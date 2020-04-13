@@ -104,11 +104,48 @@ const data = [
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-
-  Step 3: return the entire component.
-
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
-
 */
+const articleCont = document.querySelector('.articles');
+
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}){
+  let articleC = document.createElement('div');
+  let titleC = document.createElement('h2');
+  let dateC = document.createElement('p');
+  let p1C = document.createElement('p');
+  let p2C = document.createElement('p');
+  let p3C = document.createElement('p');
+  let ebutton = document.createElement('span');
+
+  articleC.classList.add('article');
+  dateC.classList.add('date');
+  ebutton.classList.add('expandButton');
+
+  titleC.textContent = title;
+  dateC.textContent = date;
+  p1C.textContent = firstParagraph;
+  p2C.textContent = secondParagraph;
+  p3C.CtextContent = thirdParagraph;
+  ebutton.textContent = 'Expand/Collapse';
+
+  articleC.appendChild(titleC);
+  articleC.appendChild(dateC);
+  articleC.appendChild(p1C);
+  articleC.appendChild(p2C);
+  articleC.appendChild(p3C);
+  articleC.appendChild(ebutton);
+  articleCont.appendChild(articleC);
+
+  ebutton.addEventListener('click', function(){
+    articleC.classList.toggle('article-open');
+  });
+}
+
+//  Step 3: return the entire component.
+
+//  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+const articles = data.map(function(section){
+  return articleMaker(section);
+})
+//  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+
+
